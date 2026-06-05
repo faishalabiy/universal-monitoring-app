@@ -1,0 +1,11 @@
+services:
+
+  redis:
+    image: redis:7
+    container_name: monitoring_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+
+volumes:
+  monitoring_postgres_data:
