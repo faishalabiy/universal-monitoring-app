@@ -7,7 +7,11 @@
 .hero {
   border-top: 1px solid var(--ps-hairline-dark);
   border-bottom: 1px solid var(--ps-hairline-dark);
-  background: linear-gradient(180deg, var(--ps-surface-dark-elevated), var(--ps-canvas-dark));
+  background: linear-gradient(
+    180deg,
+    var(--ps-surface-dark-elevated),
+    var(--ps-canvas-dark)
+  );
   padding-block: 72px;
 }
 
@@ -66,13 +70,14 @@
   padding-block: 56px 64px;
 }
 
+/* Toolbar dibuat tetap aman di light dan dark mode */
 .toolbar {
   display: grid;
   grid-template-columns: minmax(240px, 1fr) auto auto auto;
   gap: 12px;
   margin-bottom: 32px;
   padding-bottom: 24px;
-  border-bottom: 1px solid var(--ps-hairline-dark);
+  border-bottom: 1px solid var(--ps-hairline-light);
 }
 
 .search,
@@ -80,10 +85,10 @@
   display: flex;
   align-items: center;
   min-height: 44px;
-  border: 1px solid var(--ps-hairline-dark);
+  border: 1px solid var(--ps-hairline-light);
   border-radius: var(--ps-radius-sm);
-  background: var(--ps-surface-dark-card);
-  color: var(--ps-body-dark);
+  background: var(--ps-surface-card);
+  color: var(--ps-body-light);
 }
 
 .search {
@@ -97,12 +102,12 @@
   border: 0;
   outline: 0;
   background: transparent;
-  color: var(--ps-on-dark);
+  color: var(--ps-ink);
   font-size: 14px;
 }
 
 .searchInput::placeholder {
-  color: var(--ps-muted-dark);
+  color: var(--ps-muted-light);
 }
 
 .select {
@@ -112,7 +117,7 @@
 
 .selectLabel {
   white-space: nowrap;
-  color: var(--ps-body-dark);
+  color: var(--ps-body-light);
   font-size: 12px;
   font-weight: 600;
 }
@@ -131,6 +136,11 @@
   padding-inline: 22px;
   font-size: 14px;
   font-weight: 700;
+  cursor: pointer;
+}
+
+.submit:hover {
+  filter: brightness(1.05);
 }
 
 .grid {
@@ -139,18 +149,19 @@
   gap: 18px;
 }
 
+/* Card light mode */
 .card {
-  border: 1px solid var(--ps-hairline-dark);
+  border: 1px solid var(--ps-hairline-light);
   border-radius: var(--ps-radius-md);
   background: var(--ps-surface-card);
   padding: 20px;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.12);
 }
 
 .card:hover {
-  border-color: var(--ps-hairline-dark);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  border-color: var(--ps-primary);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.16);
 }
 
 .cardHeader {
@@ -171,7 +182,7 @@
 
 .cardMeta {
   margin-top: 6px;
-  color: var(--ps-muted-light);
+  color: var(--ps-body-light);
   font-size: 13px;
 }
 
@@ -182,7 +193,6 @@
   min-height: 22px;
   border-radius: var(--ps-radius-full);
   padding: 3px 10px;
-  color: #07111d;
   font-size: 11px;
   font-weight: 800;
   white-space: nowrap;
@@ -253,19 +263,20 @@
   background: #38bdf8;
 }
 
+/* INI BAGIAN YANG MEMPERBAIKI FONT TIDAK TERLIHAT DI LIGHT MODE */
 .cardFooter {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   gap: 8px;
   margin-top: 12px;
   padding-top: 12px;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  color: var(--ps-muted-dark);
+  border-top: 1px solid var(--ps-hairline-light);
+  color: var(--ps-muted-light);
   font-size: 12px;
 }
 
 .responseTime {
-  color: var(--ps-body-dark);
+  color: var(--ps-body-light);
   font-weight: 700;
 }
 
@@ -274,10 +285,69 @@
 }
 
 .empty {
-  border: 1px solid var(--ps-hairline-dark);
+  border: 1px solid var(--ps-hairline-light);
   border-radius: var(--ps-radius-md);
-  background: var(--ps-surface-dark-card);
+  background: var(--ps-surface-card);
   padding: 32px;
+  color: var(--ps-body-light);
+}
+
+/* Dark mode override */
+:global(.dark) .toolbar {
+  border-bottom-color: var(--ps-hairline-dark);
+}
+
+:global(.dark) .search,
+:global(.dark) .select {
+  border-color: var(--ps-hairline-dark);
+  background: var(--ps-surface-dark-card);
+  color: var(--ps-body-dark);
+}
+
+:global(.dark) .searchInput,
+:global(.dark) .selectInput {
+  color: var(--ps-on-dark);
+}
+
+:global(.dark) .searchInput::placeholder {
+  color: var(--ps-muted-dark);
+}
+
+:global(.dark) .selectLabel {
+  color: var(--ps-body-dark);
+}
+
+:global(.dark) .card {
+  border-color: var(--ps-hairline-dark);
+  background: var(--ps-surface-dark-card);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+:global(.dark) .card:hover {
+  border-color: var(--ps-hairline-dark);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+:global(.dark) .cardTitle {
+  color: var(--ps-on-dark);
+}
+
+:global(.dark) .cardMeta {
+  color: var(--ps-muted-dark);
+}
+
+:global(.dark) .cardFooter {
+  border-top-color: rgba(255, 255, 255, 0.08);
+  color: var(--ps-muted-dark);
+}
+
+:global(.dark) .responseTime {
+  color: var(--ps-body-dark);
+}
+
+:global(.dark) .empty {
+  border-color: var(--ps-hairline-dark);
+  background: var(--ps-surface-dark-card);
   color: var(--ps-body-dark);
 }
 

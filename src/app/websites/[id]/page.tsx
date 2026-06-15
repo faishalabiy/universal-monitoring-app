@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { getSession } from "@/lib/auth/session";
 import { prisma } from "@/lib/prisma";
+import WebsiteReportPanel from "@/components/websites/WebsiteReportPanel";
 
 type WebsiteDetailPageProps = {
   params: Promise<{
@@ -117,14 +118,22 @@ export default async function WebsiteDetailPage({
       <section className="ps-hero-dark">
         <div className="ps-container flex flex-wrap items-end justify-between gap-6">
         <div className="max-w-3xl">
-          <Link
+          {/* <Link
             href="/websites"
             className="text-sm font-semibold text-[var(--ps-link-dark)]"
           >
             ← Kembali ke Websites
-          </Link>
+          </Link> */}
 
           <h1 className="ps-display-lg mt-3">{website.name}</h1>
+
+          <span
+              className={`ps-badge ${getStatusClass(
+              website.currentStatus
+              )}`}
+          >
+              {website.currentStatus}
+          </span>
 
           <a
             href={website.url}
@@ -143,13 +152,7 @@ export default async function WebsiteDetailPage({
             Edit
         </Link>
 
-        <span
-            className={`ps-badge ${getStatusClass(
-            website.currentStatus
-            )}`}
-        >
-            {website.currentStatus}
-        </span>
+
         </div>
         </div>
       </section>
@@ -188,6 +191,10 @@ export default async function WebsiteDetailPage({
             {formatDate(website.lastCheckedAt)}
           </p>
         </div>
+      </div>
+
+      <div className="mb-6">
+        <WebsiteReportPanel websiteId={website.id} />
       </div>
 
       <div className="ps-card mb-6 p-5">

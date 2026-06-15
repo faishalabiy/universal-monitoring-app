@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import BrandIcon from "@/components/BrandIcon";
 import LogoutButton from "@/components/LogoutButton";
 import ThemeToggle from "@/components/ThemeToggle";
 
@@ -26,9 +27,7 @@ export default function AppNav() {
       <div className="ps-container flex min-h-12 flex-wrap items-center justify-between gap-4 py-3">
         <div className="flex min-w-0 items-center">
           <Link href="/dashboard" className="ps-nav-brand">
-            <span className="flex size-8 items-center justify-center rounded-full bg-[var(--ps-primary)] text-sm font-bold">
-              PS
-            </span>
+            <BrandIcon size={32} />
             <span className="text-sm font-semibold tracking-[0.4px]">
               Monitoring Station
             </span>

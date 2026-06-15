@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
+import BrandIcon from "@/components/BrandIcon";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -49,9 +50,7 @@ export default function LoginPage() {
     <main className="grid min-h-screen bg-[var(--ps-canvas-dark)] text-[var(--ps-on-dark)] lg:grid-cols-[1fr_480px]">
       <section className="flex items-center px-6 py-16">
         <div className="mx-auto max-w-3xl">
-          <div className="mb-8 inline-flex size-12 items-center justify-center rounded-full bg-[var(--ps-primary)] text-lg font-bold">
-            PS
-          </div>
+          <BrandIcon className="mb-8" size={48} />
           <h1 className="ps-display-xl">Monitoring Station</h1>
           <p className="ps-body-md mt-5 max-w-xl text-[var(--ps-body-dark)]">
             Masuk untuk melihat status website, incident aktif, dan pengiriman
@@ -75,7 +74,7 @@ export default function LoginPage() {
               className="ps-input mt-2"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
-              placeholder="admin@monitoring.local"
+              placeholder="admin@ptrekaindo.co.id"
             />
           </div>
 
